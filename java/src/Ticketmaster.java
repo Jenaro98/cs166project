@@ -434,7 +434,7 @@ public class Ticketmaster{
 			System.out.print("Are you sure you want to clear canceled bookings?(y/n): ");
 			try{
 				input = in.readLine();
-				if(input != "y" || input != "n"){
+				if(!input.equals("y") || !input.equals("n")){
 					throw new RuntimeException("Input must be (y/n)");
 				}
 				break;
@@ -444,7 +444,7 @@ public class Ticketmaster{
 			}
 		}while(true);
 
-		if(input == "y"){
+		if(input.equals("y")){
 			try{
 				String query = "DELETE FROM Bookings WHERE status =  \'" + "Canceled" + "\';";
 				esql.executeUpdate(query);
