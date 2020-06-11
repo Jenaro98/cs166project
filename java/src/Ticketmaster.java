@@ -361,7 +361,7 @@ public class Ticketmaster{
 			}
 		}while(true);
 
-		long int phone;
+		long phone;
 
 		do{
 			System.out.print("Enter a 10 digit phone number: ");
