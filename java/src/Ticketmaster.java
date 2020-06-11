@@ -439,7 +439,7 @@ public class Ticketmaster{
 					}
 					//break;
 					try{
-						String query = "SELECT fnmae\nFROM Users\nWHERE email = " + userEmail + " AND pwd = " + userPw + ";";
+						String query = "SELECT fname\nFROM Users\nWHERE email = " + userEmail + " AND pwd = " + userPw + ";";
 				
 						if(esql.executeQueryAndPrintResult(query) == 0){
 							System.out.print("User and or password invalid or User does not exist");
