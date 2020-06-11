@@ -442,6 +442,7 @@ public class Ticketmaster{
 					}catch (Exception e){
 						System.err.println(e.getMessage());
 					}
+				}
 				break;
 			}catch (Exception e){
 				System.out.println(e);
