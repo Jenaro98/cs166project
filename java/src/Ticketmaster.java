@@ -439,6 +439,7 @@ public class Ticketmaster{
 					try{
 						String query = "DELETE FROM Bookings WHERE status =  \'" + "Canceled" + "\';";
 						esql.executeUpdate(query);
+						System.out.print("Success!!");
 					}catch (Exception e){
 						System.err.println(e.getMessage());
 					}
