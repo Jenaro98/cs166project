@@ -442,7 +442,7 @@ public class Ticketmaster{
 					}catch (Exception e){
 						System.err.println(e.getMessage());
 					}
-				}else if(!input.equals("y") || !input.equals("n")){
+				}else if(!input.equals("y") && !input.equals("n")){
 					throw new RuntimeException("Invalid input!");
 				}
 				break;
