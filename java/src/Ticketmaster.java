@@ -427,7 +427,31 @@ public class Ticketmaster{
 	}
 	
 	public static void ClearCancelledBookings(Ticketmaster esql){//7
-		
+		String input;
+		//boolean response= false;
+
+		do{
+			System.out.print("Are you sure you want to clear canceled bookings?(y/n): ");
+			try{
+				input = in.readLine();
+				if(input != "y" || input != "n"){
+					throw new RuntimeException("Input must be (y/n)");
+				}
+				break;
+			}catch (Exception e){
+				System.out.println(e);
+				continue;
+			}
+		}while(true);
+
+		if(input == "y"){
+			try{
+				String query = "DELETE FROM Bookings WHERE status =  \'" + "Canceled" + "\';";
+				esql.executeUpdate(query);
+			}catch (Exception e){
+				System.err.println(e.getMessage());
+			}
+		}
 	}
 	
 	public static void RemoveShowsOnDate(Ticketmaster esql){//8
