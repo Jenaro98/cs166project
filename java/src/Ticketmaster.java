@@ -471,7 +471,7 @@ public class Ticketmaster{
 			System.out.print("Enter date and time of booking(MM/DD/YYYY HH:mm): ");
 			try{
 				dt = in.readLine();
-				dateTime = dt.parse(dt,dtFormat); //format MM/DD/YYYY HH:mm
+				dateTime = LocalDateTime.parse(dt,dtFormat); //format MM/DD/YYYY HH:mm
 				break;
 			}catch(DateTimeParseException e){
 				System.out.println("Invalid input!");
