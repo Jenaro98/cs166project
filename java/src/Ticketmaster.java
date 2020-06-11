@@ -334,7 +334,7 @@ public class Ticketmaster{
 		do{
 			System.out.print("Enter last name: ");
 			try{
-				lname = in.readline();
+				lname = in.readLine();
 				if(lname.length() <= 0 || lname.length() > 32){
 					throw new RuntimeException("Last name can not be empty or exceed 32 characters");
 				}
@@ -350,7 +350,7 @@ public class Ticketmaster{
 		do{
 			System.out.print("Enter email: ");
 			try{
-				email = in.readline();
+				email = in.readLine();
 				if(email.length() <= 0 || email.length() > 64){
 					throw new RuntimeException("Email can not be empty or exceed 64 characters");
 				}
@@ -366,7 +366,7 @@ public class Ticketmaster{
 		do{
 			System.out.print("Enter a 10 digit phone number: ");
 			try{
-				phone = in.readline();
+				phone = in.readLine();
 				if(String.valueOf(phone).length() != 0 || String.valueOf(phone).length() != 10){
 					throw new RuntimeException("Phone number must be 10 digits");
 				}
@@ -385,7 +385,7 @@ public class Ticketmaster{
 		do{
 			System.out.print("Enter password: ");
 			try{
-				password = in.readline();
+				password = in.readLine();
 				if(password.length() <= 0 || password.length() > 64){
 					throw new RuntimeException("Password can not be empty or exceed 64 characters");
 				}
