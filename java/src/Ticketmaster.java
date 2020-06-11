@@ -432,11 +432,16 @@ public class Ticketmaster{
 
 		do{
 			System.out.print("Are you sure you want to clear canceled bookings?(y/n): ");
+
 			try{
 				input = in.readLine();
-				if(!input.equals("y") || !input.equals("n")){
-					throw new RuntimeException("Input must be (y/n)");
-				}
+				if(input.equals("y")){
+					try{
+						String query = "DELETE FROM Bookings WHERE status =  \'" + "Canceled" + "\';";
+						esql.executeUpdate(query);
+					}catch (Exception e){
+						System.err.println(e.getMessage());
+					}
 				break;
 			}catch (Exception e){
 				System.out.println(e);
@@ -444,14 +449,7 @@ public class Ticketmaster{
 			}
 		}while(true);
 
-		if(input.equals("y")){
-			try{
-				String query = "DELETE FROM Bookings WHERE status =  \'" + "Canceled" + "\';";
-				esql.executeUpdate(query);
-			}catch (Exception e){
-				System.err.println(e.getMessage());
-			}
-		}
+		
 	}
 	
 	public static void RemoveShowsOnDate(Ticketmaster esql){//8
