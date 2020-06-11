@@ -463,9 +463,9 @@ public class Ticketmaster{
 			}
 		}while(true);
 
-		String dateTime;
+		LocalDateTime dateTime;
 		DateTimeFormatter dtFormat = DateTimeFormatter.ofPattern("MM/DD/YYYY hh:mm");
-		LocalDateTime dt;
+		String dt;
 
 		do{
 			System.out.print("Enter date and time of booking(MM/DD/YYYY HH:mm): ");
