@@ -430,37 +430,35 @@ public class Ticketmaster{
 				if(userEmail.length() <= 0 || userEmail.length() > 64){
 					throw new RuntimeException("Email can not be empty or exceed 64 characters");
 				}
-				break;
-			}catch (Exception e){
-				System.out.println(e);
-				continue;
-			}
-
-			System.out.print("Enter user password: ");
-			try{
-				userPw = in.readLine();
-				if(userPw.length() <= 0 || userPw.length() > 64){
-					throw new RuntimeException("Password can not be empty or exceed 64 characters");
-				}
-				break;
-			}catch (Exception e){
-				System.out.println(e);
-				continue;
-			}
-
-			try{
-				String query = "SELECT fnmae\nFROM Users\nWHERE email = " + userEmail + " AND pwd = " + userPw + ";";
+				//break;
+				System.out.print("Enter user password: ");
+				try{
+					userPw = in.readLine();
+					if(userPw.length() <= 0 || userPw.length() > 64){
+						throw new RuntimeException("Password can not be empty or exceed 64 characters");
+					}
+					//break;
+					try{
+						String query = "SELECT fnmae\nFROM Users\nWHERE email = " + userEmail + " AND pwd = " + userPw + ";";
 				
-				if(esql.executeQueryAndPrintResult(query) == 0){
-					System.out.print("User and or password invalid or User does not exist");
-				}else{
-					System.out.print("Login Successful: " + query + " ");
+						if(esql.executeQueryAndPrintResult(query) == 0){
+							System.out.print("User and or password invalid or User does not exist");
+						}else{
+							System.out.print("Login Successful: " + query + " ");
+						}
+						break;
+						}catch (Exception e){
+							System.out.println(e);
+							continue;
+						}
+				}catch (Exception e){
+					System.out.println(e);
+					continue;
 				}
-				break;
 			}catch (Exception e){
 				System.out.println(e);
 				continue;
-			}
+			}	
 		}while(true);
 
 		LocalDateTime dateTime;
