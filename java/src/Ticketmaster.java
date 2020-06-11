@@ -405,7 +405,110 @@ public class Ticketmaster{
 	}
 	
 	public static void AddBooking(Ticketmaster esql){//2
+	/* CREATE TABLE Bookings (
+    bid BIGINT NOT NULL,  -- Booking ID
+    status VARCHAR(16) NOT NULL,
+    bdatetime TIMESTAMPTZ NOT NULL,  -- Booking date and time
+    seats INTEGER NOT NULL,  -- Number of seats booked
+    sid BIGINT NOT NULL,  -- Show ID
+    email VARCHAR(64) NOT NULL,  -- User account
+    PRIMARY KEY(bid),
+    FOREIGN KEY(sid) REFERENCES Shows(sid) ON DELETE CASCADE,
+    FOREIGN KEY(email) REFERENCES Users(email)    
+    -- A booking has at most one payment is enforced in Payments via UNIQUE
+    );*/
+
+		String userEmail;
+		String userPw;
+
+		do{
+			System.out.print("Enter user email: ");
+			try{
+				userEmail = in.readLine();
+				if(userEmail.length() <= 0 || userEmail.length() > 64){
+					throw new RuntimeException("Email can not be empty or exceed 64 characters");
+				}
+				break;
+			}catch (Exception e){
+				System.out.println(e);
+				continue;
+			}
+
+			System.out.print("Enter user password: ");
+			try{
+				userPw = in.readLine();
+				if(password.length() <= 0 || password.length() > 64){
+					throw new RuntimeException("Password can not be empty or exceed 64 characters");
+				}
+				break;
+			}catch (Exception e){
+				System.out.println(e);
+				continue;
+			}
+
+			try{
+				String query = "SELECT fnmae\nFROM Users\nWHERE email = " + userEmail + " AND pwd = " + userPw + ";";
+				
+				if(esql.executeQueryAndPrintResult(query) == 0){
+					System.out.print("User and or password invalid or User does not exist");
+				}else{
+					System.out.print("Login Successful: " + query + " ");
+				}
+				break;
+			}catch (Exception e){
+				System.out.println(e);
+				continue;
+			}
+		}while(true);
+
+		String status;
 		
+		do{
+			System.out.print("Enter status: ");
+			try{
+				status = in.readLine();
+				if(status != "pending" || status != "confirmed" || status != "canceled"){
+					throw new RuntimeException("Status not valid");
+				}
+				break;
+			}catch (Exception e){
+				System.out.println(e);
+				continue;
+			}
+		}while(true);
+
+		String dateTime;
+		DateTimeFormatter dtFormat = DateTimeFormatter.ofPattern("MM/DD/YYYY hh:mm");
+		LocalDate dt;
+
+		do{
+			System.out.print("Enter date and time of booking(MM/DD/YYYY HH:mm): ");
+			try{
+				dt = in.readLine();
+				dateTime = dt.format(dtFormat); //format MM/DD/YYYY HH:mm
+				break;
+			}catch (Exception e){
+				System.out.println("Invalid input!");
+				continue;
+			}
+		}while(true);
+
+		String status;
+		
+		do{
+			System.out.print("Enter status: ");
+			try{
+				status = in.readLine();
+				if(status != "Pending" || status != "Confirmed" || status != "Canceled"){
+					throw new RuntimeException("Status not valid");
+				}
+				break;
+			}catch (Exception e){
+				System.out.println(e);
+				continue;
+			}
+		}while(true);
+
 	}
 	
 	public static void AddMovieShowingToTheater(Ticketmaster esql){//3
