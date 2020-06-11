@@ -367,9 +367,6 @@ public class Ticketmaster{
 			System.out.print("Enter a 10 digit phone number: ");
 			try{
 				phone = Long.parseLong(in.readLine());
-				if(String.valueOf(phone).length() != 0 || String.valueOf(phone).length() != 10){
-					throw new RuntimeException("Phone number must be 10 digits");
-				}
 				break;
 			}catch (NumberFormatException e) {
 				System.out.println("Invalid input!");
