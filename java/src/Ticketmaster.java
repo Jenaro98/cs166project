@@ -437,7 +437,7 @@ public class Ticketmaster{
 			System.out.print("Enter user password: ");
 			try{
 				userPw = in.readLine();
-				if(password.length() <= 0 || password.length() > 64){
+				if(userPw.length() <= 0 || userPw.length() > 64){
 					throw new RuntimeException("Password can not be empty or exceed 64 characters");
 				}
 				break;
@@ -461,25 +461,9 @@ public class Ticketmaster{
 			}
 		}while(true);
 
-		String status;
-		
-		do{
-			System.out.print("Enter status: ");
-			try{
-				status = in.readLine();
-				if(status != "pending" || status != "confirmed" || status != "canceled"){
-					throw new RuntimeException("Status not valid");
-				}
-				break;
-			}catch (Exception e){
-				System.out.println(e);
-				continue;
-			}
-		}while(true);
-
 		String dateTime;
 		DateTimeFormatter dtFormat = DateTimeFormatter.ofPattern("MM/DD/YYYY hh:mm");
-		LocalDate dt;
+		LocalDateTime dt;
 
 		do{
 			System.out.print("Enter date and time of booking(MM/DD/YYYY HH:mm): ");
