@@ -313,7 +313,8 @@ public class Ticketmaster{
 	}//end readChoice
 	
 	public static void AddUser(Ticketmaster esql){//1
-		
+		string fname;
+				
 	}
 	
 	public static void AddBooking(Ticketmaster esql){//2
