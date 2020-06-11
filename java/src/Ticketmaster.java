@@ -412,14 +412,37 @@ public class Ticketmaster{
 	}
 	
 	public static void AddMovieShowingToTheater(Ticketmaster esql){//3
+		
+		//Enter Theater name
+		long TheaterID;
+		try {
+			String userinput = Long.parseLong(in.readLine());
+		}
+		catch(Exception e){System.err.println(e.getMessage()); return;}
+		
+		//Check if it exists in Theaters
+			//If not, fail gracefully.
+		executeQueryAndReturnResult()//TODO
+		
+		
+		//Movies fields
 		String movieTitle;
-		Integer duration; //in seconds
+		int movieDuration; //in seconds
+		String movieLanguage;
+		String movieDescription;
+		String movieGenre;
+		String movieCountry;
+		String movieReleaseDate;
+		int movieID;
+
+		//Shows fields
 		String startTime;//in 23:59 format
 		String endTime;//in 23:59 format
 		String date;//in 1/1/9999 format
-		
+		int showID;
 
-		
+		//Plays fields
+				
 
 		try{
 			String query = "";
