@@ -473,7 +473,7 @@ public class Ticketmaster{
 				dt = in.readLine();
 				dateTime = dt.parse(dt,dtFormat); //format MM/DD/YYYY HH:mm
 				break;
-			}catch(DateTimeParseException){
+			}catch(DateTimeParseException e){
 				System.out.println("Invalid input!");
 				continue;
 			}catch (Exception e){
