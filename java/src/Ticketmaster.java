@@ -406,14 +406,35 @@ public class Ticketmaster{
 	
 	public static void AddBooking(Ticketmaster esql){//2
 		
+
+
+
 	}
 	
 	public static void AddMovieShowingToTheater(Ticketmaster esql){//3
+		String movieTitle;
+		Integer duration; //in seconds
+		String startTime;//in 23:59 format
+		String endTime;//in 23:59 format
+		String date;//in 1/1/9999 format
 		
+
+		
+
+		try{
+			String query = "";
+		//	esql.executeUpdate(query);			
+		}
+		catch(Exception e){System.err.println(e.getMessage());}
 	}
 	
 	public static void CancelPendingBookings(Ticketmaster esql){//4
-		
+		try{
+			String query = "UPDATE Bookings SET status = \'Cancelled\' WHERE status = 'Pending'";				
+			esql.executeUpdate(query);			
+		}
+		catch(Exception e){System.err.println(e.getMessage());}
+
 	}
 	
 	public static void ChangeSeatsForBooking(Ticketmaster esql) throws Exception{//5
