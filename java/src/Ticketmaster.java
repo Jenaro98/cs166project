@@ -313,7 +313,97 @@ public class Ticketmaster{
 	}//end readChoice
 	
 	public static void AddUser(Ticketmaster esql){//1
-		string fname;
+		String fname;
+
+		do{
+			System.out.print("Enter first name: ");
+			try{
+				fname = in.readLine();
+				if(fname.length() <= 0 || fname.length() > 32){
+					throw new RuntimeException("First name can not be empty or exceed 32 characters");
+				}
+				break;
+			}catch (Exception e){
+				System.out.println(e);
+				continue;
+			}
+		}while(true);
+		
+		String lname;
+
+		do{
+			System.out.print("Enter last name: ");
+			try{
+				lname = in.readline();
+				if(lname.length() <= 0 || lname.length() > 32){
+					throw new RuntimeException("Last name can not be empty or exceed 32 characters");
+				}
+				break;
+			}catch (Exception e){
+				System.out.println(e);
+				continue;
+			}
+		}while(true);
+
+		String email;
+
+		do{
+			System.out.print("Enter email: ");
+			try{
+				email = in.readline();
+				if(email.length() <= 0 || email.length() > 64){
+					throw new RuntimeException("Email can not be empty or exceed 64 characters");
+				}
+				break;
+			}catch (Exception e){
+				System.out.println(e);
+				continue;
+			}
+		}while(true);
+
+		long int phone;
+
+		do{
+			System.out.print("Enter a 10 digit phone number: ");
+			try{
+				phone = in.readline();
+				if(String.valueOf(phone).length() != 0 || String.valueOf(phone).length() != 10){
+					throw new RuntimeException("Phone number must be 10 digits");
+				}
+				break;
+			}catch (NumberFormatException e) {
+				System.out.println("Invalid input!");
+				continue;
+			}catch (Exception e){
+				System.out.println(e);
+				continue;
+			}
+		}while(true);
+
+		String password;
+
+		do{
+			System.out.print("Enter password: ");
+			try{
+				password = in.readline();
+				if(password.length() <= 0 || password.length() > 64){
+					throw new RuntimeException("Password can not be empty or exceed 64 characters");
+				}
+				break;
+			}catch (Exception e){
+				System.out.println(e);
+				continue;
+			}
+		}while(true);
+
+
+		try{
+			String query = "INSERT INTO Users (email, lname, fname, phone, pwd) VALUES (\'" + email + "\', \'" + lname + "\', \'" + fname + "\', " + phone + ", \'" + password + "\');"; 
+
+			esql.executeUpdate(query);
+		}catch (Exception e){
+			System.err.println(e.getMessage());
+		}
 				
 	}
 	
