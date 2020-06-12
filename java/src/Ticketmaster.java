@@ -415,7 +415,7 @@ public class Ticketmaster{
 	}
 	
 	public static void CancelPendingBookings(Ticketmaster esql){//4
-		
+		//
 	}
 	
 	public static void ChangeSeatsForBooking(Ticketmaster esql) throws Exception{//5
@@ -522,7 +522,82 @@ public class Ticketmaster{
 
 	public static void ListMovieAndShowInfoAtCinemaInDateRange(Ticketmaster esql){//13
 		//
-		
+		String movie;
+
+		do{
+			System.out.print("Enter movie: ");
+
+			try{
+				movie = in.readLine();
+
+				if(movie.length() < 0 || movie.length() > 128 ){
+					throw new RuntimeException("Input can not be empty or exceed 128 characters");
+				}
+				break;
+			}catch(Exception e){
+				System.out.println(e);
+				continue;
+			}
+		}while(true);
+
+		String cinema;
+
+		do{
+			System.out.print("Enter cinema: ");
+
+			try{
+				cinema = in.readLine();
+
+				if(cinema.length() < 0 || cinema.length() > 64 ){
+					throw new RuntimeException("Input can not be empty or exceed 64 characters");
+				}
+				break;
+			}catch(Exception e){
+				System.out.println(e);
+				continue;
+			}
+		}while(true);
+
+		String date1;
+
+		do{
+			System.out.print("Enter starting date for range(MM/DD/YYYY): ");
+
+			try{
+				date1 = in.readLine();
+
+				if(date1.length() < 0 || date1.length() > 10 ){
+					throw new RuntimeException("Invalid date. Must not exceed 10 characters including '/''.");
+				}
+				break;
+			}catch(Exception e){
+				System.out.println(e);
+				continue;
+			}
+		}while(true);
+
+		String date2;
+
+		do{
+			System.out.print("Enter ending date for range(MM/DD/YYYY): ");
+
+			try{
+				date2 = in.readLine();
+
+				if(date2.length() < 0 || date2.length() > 10 ){
+					throw new RuntimeException("Invalid date. Must not exceed 10 characters including '/''.");
+				}
+				break;
+			}catch(Exception e){
+				System.out.println(e);
+				continue;
+			}
+		}while(true);
+
+		//we have movie,cinema,date1,date2
+
+		//SELECT m.title, s.sdate, s.sttime FROM Movies m, Shows s, Plays p WHERE 
+
 	}
 
 	public static void ListBookingInfoForUser(Ticketmaster esql){//14
