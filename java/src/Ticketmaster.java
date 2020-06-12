@@ -470,7 +470,7 @@ public class Ticketmaster{
 		String date;
 
 		do{
-			System.out.print("Enter date for showing(MM/DD/YYYY): ";
+			System.out.print("Enter date for showing(MM/DD/YYYY): ");
 			try{
 				date = in.readLine();
 				if(date.length() < 0 || date.length() > 10){
