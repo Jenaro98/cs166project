@@ -501,9 +501,9 @@ public class Ticketmaster{
 
 		//SELECT M.title FROM Movies M, Shows S WHERE (S.sdate = date AND S.sttime = time) AND S.mvid = U.mvid;
 		try{
-			String query = "SELECT m.mvid FROM Movies m WHERE m.rdate = '" + date + "';";// AND s.sttime = '" + time + "' AND s.mvid = m.mvid;";
+			String query = "SELECT m.title FROM Movies m, Shows s WHERE s.sdate = '" + date + "' AND s.sttime = '" + time + "' AND s.mvid = m.mvid;";
 
-			esql.executeQuery(query);
+			esql.executeQueryAndPrintResult(query);
 		}catch(Exception e){
 			System.err.println(e.getMessage());
 		}
