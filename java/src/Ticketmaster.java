@@ -647,7 +647,7 @@ public class Ticketmaster{
 		int showId = -1;
 		List<List<String>> temp1;
 		List<List<String>> temp3;
-		try{
+		//try{
 			String query = "SELECT s.sid FROM ShowSeats s WHERE s.bid = '" + bookingId + "';";
 			temp1 = esql.executeQueryAndReturnResult(query);
 
@@ -655,18 +655,18 @@ public class Ticketmaster{
 			temp3 = esql.executeQueryAndReturnResult(query1);
 
 			System.out.print("Show id is: " + temp1.get(0).get(0) + " seats");
-		}catch(Exception e){
-			System.out.println(e);
-		}
+		//}catch(Exception e){
+		//	System.out.println(e);
+		//}
 
 		showId = Integer.parseInt(temp1.get(0).get(0));
 		List<List<String>> temp2;
-		try{//get all cinema seat ids for a show
+		//try{//get all cinema seat ids for a show
 			String query = "SELECT s.csid FROM ShowSeats s WHERE s.sid = '" + showId + "';";
 			temp2 = esql.executeQueryAndReturnResult(query);
-		}catch(Exception e){
-			System.out.println(e);
-		}
+		//}catch(Exception e){
+		//	System.out.println(e);
+		//}
 
 		int counter = 0;
 		List<Integer> nums;
