@@ -669,7 +669,7 @@ public class Ticketmaster{
 		//}
 
 		int counter = 0;
-		List<Integer> nums;
+		List<Integer> nums = new List<Integer>(seats);
 		do{
 			//List<Integer> nums;
 			counter = 0; //if not 0 then seat is not available
