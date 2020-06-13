@@ -815,7 +815,7 @@ public class Ticketmaster{
 				break;
 			}catch(Exception e){
 				System.out.println(e);
-				continue;
+				
 			}
 
 			try{
@@ -824,7 +824,7 @@ public class Ticketmaster{
 				break;
 			}catch(Exception e){
 				System.out.println(e);
-				continue;
+				
 			}
 
 			System.out.print("Enter show id:");
