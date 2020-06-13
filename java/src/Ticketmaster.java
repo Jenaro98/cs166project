@@ -645,8 +645,8 @@ public class Ticketmaster{
 		}
 
 		int showId = -1;
-		List<List<String>> temp1 = 0;
-		List<List<String>> temp3 = 0;
+		List<List<String>> temp1 = NULL;
+		List<List<String>> temp3 = NULL;
 		try{
 			String query = "SELECT s.sid FROM ShowSeats s WHERE s.bid = '" + bookingId + "';";
 			temp1 = esql.executeQueryAndReturnResult(query);
@@ -660,7 +660,7 @@ public class Ticketmaster{
 		}
 
 		showId = Integer.parseInt(temp1.get(0).get(0));
-		List<List<String>> temp2 = 0;
+		List<List<String>> temp2 = NULL;
 		try{//get all cinema seat ids for a show
 			String query = "SELECT s.csid FROM ShowSeats s WHERE s.sid = '" + showId + "';";
 			temp2 = esql.executeQueryAndReturnResult(query);
@@ -669,7 +669,7 @@ public class Ticketmaster{
 		}
 
 		int counter = 0;
-		List<Integer> nums= 0;
+		List<Integer> nums = NULL;
 		do{
 			//List<Integer> nums;
 			counter = 0; //if not 0 then seat is not available
