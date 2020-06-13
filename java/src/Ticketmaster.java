@@ -449,7 +449,7 @@ public class Ticketmaster{
 	
 	public static void RemovePayment(Ticketmaster esql){//6
 		int bookId;
-		boolean exists = 0;
+		int exists = 0;
 
 		do{
 			do{
@@ -471,7 +471,7 @@ public class Ticketmaster{
 			try{
 				String query = "SELECT p.pid FROM Payments p, Bookings b WHERE b.bid = '" + bookId + "';";
 				exists = esql.executeQuery(query);
-				if(!exists){
+				if(exists == 0){
 					throw new RuntimeException("Booking id does not exist! Try Again");
 				}
 				break;
@@ -479,17 +479,16 @@ public class Ticketmaster{
 				System.out.println(e);
 				continue;
 			}
-		}while(!exixts);
+		}while(exists == 0);
 
 		try{
 			String query = "DELETE * FROM Payments p, WHERE p.bid = '" + bookId + "';";
 			esql.executeQuery(query);
 
-			String query = "UPDATE BOOKINGS SET status = '" + "Canceled" + "' WHERE bid = '" + bookId + "';";
-			esql.executeUpdate(query);
+			String query1 = "UPDATE BOOKINGS SET status = '" + "Canceled" + "' WHERE bid = '" + bookId + "';";
+			esql.executeUpdate(query1);
 		}catch(Exception e){
 			System.out.println(e);
-			continue;
 		}
 
 		System.out.print("Success!!\n");
