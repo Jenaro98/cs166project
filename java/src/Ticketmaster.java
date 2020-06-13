@@ -662,8 +662,8 @@ public class Ticketmaster{
 		showId = Integer.parseInt(temp1.get(0).get(0));
 		List<List<String>> temp2;
 		//try{//get all cinema seat ids for a show
-			String query = "SELECT s.csid FROM ShowSeats s WHERE s.sid = '" + showId + "';";
-			temp2 = esql.executeQueryAndReturnResult(query);
+			String query2 = "SELECT s.csid FROM ShowSeats s WHERE s.sid = '" + showId + "';";
+			temp2 = esql.executeQueryAndReturnResult(query2);
 		//}catch(Exception e){
 		//	System.out.println(e);
 		//}
@@ -700,8 +700,8 @@ public class Ticketmaster{
 
 		for(int i = 0; i < seats; i++){
 			try{
-				String query = "UPDATE CinemaSeats SET sno = '" + nums.get(i) + "' WHERE csid = '" + temp3.get(i).get(0) + "';" ;
-				esql.executeUpdate(query);
+				String query4 = "UPDATE CinemaSeats SET sno = '" + nums.get(i) + "' WHERE csid = '" + temp3.get(i).get(0) + "';" ;
+				esql.executeUpdate(query4);
 			}catch(Exception e){
 				System.out.println(e);
 			}
