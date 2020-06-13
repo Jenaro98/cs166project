@@ -411,7 +411,173 @@ public class Ticketmaster{
 	}
 	
 	public static void AddMovieShowingToTheater(Ticketmaster esql){//3
-		
+		int theaterId;
+		int exists = 0;
+
+		do{//do until existing theater id is input
+			do{
+				System.out.print("Enter theater id for new movie showing:")
+				try{
+					theaterId = Integer.ParseInt(in.readLine());
+				}catch (NumberFormatException e) {
+					System.out.println("Invalid input!");
+					continue;
+				}catch(Exception e){
+					System.out.println(e);
+				}
+			}while(true);
+
+			try{
+				String query = "SELECT t.cid FROM Theaters t WHERE t.tid = '" + theaterId + "';";
+				exists = esql.executeQuery(query);
+				if(exists == 0){
+					throw new RuntimeException("Theater Id does not exist! Try again");
+				}
+			}
+		}while(exists == 0);
+
+		int movieId;
+
+		try{
+			String query = "SELECT COUNT(DISTINCT m.mvid) FROM Movies m;";
+			movieId = Integer.parseInt(esql.executeQueryAndReturnResult(query));
+			movieId = movieId + 1; //movie id for new movie
+		}catch(Exception e){
+			System.out.print(e);
+		}
+
+		String title;
+		String relDate;
+		String relCntry;
+		String des;
+		long length;
+		String lang;
+		String genre;
+
+		do{
+			System.out.print("Enter movie title: ");
+
+			try{
+				title = in.readLine();
+				if(title.length() <= 0 || title.length() > 128){
+					throw new RuntimeException("Title can not be empty or exceed 128 characters!")
+				}
+				break;
+			}catch(Exception e){
+				System.out.println(e);
+				continue;
+			}
+		}while(true);
+
+		do{
+			System.out.print("Enter movie release date(MM/DD/YYYY): ");
+
+			try{
+				relDate = in.readLine();
+				if(relDate.length() <= 0 || relDate.length() > 10){
+					throw new RuntimeException("Release Date can not be empty or exceed 10 characters including '/''!")
+				}
+				break;
+			}catch(Exception e){
+				System.out.println(e);
+				continue;
+			}
+		}while(true);
+
+		do{
+			System.out.print("Enter movie release country: ");
+
+			try{
+				relCntry = in.readLine();
+				if(relCntry.length() <= 0 || relCntry.length() > 64){
+					throw new RuntimeException("Release Country can not be empty or exceed 64 characters!")
+				}
+				break;
+			}catch(Exception e){
+				System.out.println(e);
+				continue;
+			}
+		}while(true);
+
+		do{
+			System.out.print("Enter movie description: ");
+
+			try{
+				des = in.readLine();
+				if(des.length() <= 0 || des.length() > 200){
+					throw new RuntimeException("Description can not be empty or exceed 200 characters!")
+				}
+				break;
+			}catch(Exception e){
+				System.out.println(e);
+				continue;
+			}
+		}while(true);
+
+		do{
+			System.out.print("Enter movie duration in seconds: ");
+
+			try{
+				length = Long.parseLong(in.readLine());
+				if(length <= 0 ){
+					throw new RuntimeException("Movie Duration can not be empty!")
+				}
+				break;
+			}catch (NumberFormatException e) {
+				System.out.println("Invalid input!");
+				continue;
+			}catch(Exception e){
+				System.out.println(e);
+				continue;
+			}
+		}while(true);
+
+		do{
+			System.out.print("Enter movie language: ");
+
+			try{
+				lang = in.readLine();
+				if(lang.length() <= 0 || lang.length() > 2){
+					throw new RuntimeException("Language code can not be empty or exceed 2 characters!")
+				}
+				break;
+			}catch(Exception e){
+				System.out.println(e);
+				continue;
+			}
+		}while(true);
+
+		do{
+			System.out.print("Enter movie genre: ");
+
+			try{
+				genre = in.readLine();
+				if(genre.length() <= 0 || genre.length() > 16){
+					throw new RuntimeException("Movie Genre can not be empty or exceed 16 characters!")
+				}
+				break;
+			}catch(Exception e){
+				System.out.println(e);
+				continue;
+			}
+		}while(true);
+
+		try{
+			String query = "INSERT INTO Movies (mvid, title, rdate, country, description, duration, lang, genre) VALUES ('" + movieId + "', '" + title + "', '" + relDate + "', " + relCntry + ", '" + des + ", '" + length + ", '" + lang + ", '" +  genre +"');";
+			esql.executeUpdate(query);
+		}catch(Exception e){
+			System.out.println(e);
+		}
+
+		try{
+			String query = "INSERT INTO Plays (sid, tid) VALUES ('" + movieId + "', " + theaterId + "');";
+			esql.executeUpdate(query);
+		}catch(Exception e){
+			System.out.println(e);
+		}
+
+		System.out.print("Success adding " + title + " to movie showings to theater with id: " + theaterId + "!\n ")
+
 	}
 	
 	public static void CancelPendingBookings(Ticketmaster esql){//4
@@ -425,7 +591,7 @@ public class Ticketmaster{
 				input = in.readLine();
 				if(input.equals("y")){
 					try{
-						String query = "UPDATE BOOKINGS SET status = \'" + "Canceled" + "\' WHERE status = \'" + "Pending" + "\';";
+						String query = "UPDATE BOOKINGS SET status = '" + "Canceled" + "' WHERE status = '" + "Pending" + "';";
 						esql.executeUpdate(query);
 						System.out.print("Success!!\n");
 					}catch (Exception e){
@@ -506,7 +672,7 @@ public class Ticketmaster{
 				input = in.readLine();
 				if(input.equals("y")){
 					try{
-						String query = "DELETE FROM Bookings WHERE status =  \'" + "Canceled" + "\';";
+						String query = "DELETE FROM Bookings WHERE status =  '" + "Canceled" + "';";
 						esql.executeUpdate(query);
 						System.out.print("Success!!\n");
 					}catch (Exception e){
