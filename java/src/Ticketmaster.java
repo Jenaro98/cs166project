@@ -482,8 +482,8 @@ public class Ticketmaster{
 		}while(exists == 0);
 
 		try{
-			String query = "DELETE * FROM Payments p, WHERE p.bid = '" + bookId + "';";
-			esql.executeQuery(query);
+			String query = "DELETE FROM Payments p, WHERE p.bid = '" + bookId + "';";
+			esql.executeUpdate(query);
 
 			String query1 = "UPDATE BOOKINGS SET status = '" + "Canceled" + "' WHERE bid = '" + bookId + "';";
 			esql.executeUpdate(query1);
