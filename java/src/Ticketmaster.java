@@ -413,7 +413,7 @@ public class Ticketmaster{
 	public static void AddMovieShowingToTheater(Ticketmaster esql){//3
 		int theaterId;
 		int exists = 0;
-		int movieId;
+		int movieId = -1;
 
 		do{//do until existing theater id is input
 			do{
