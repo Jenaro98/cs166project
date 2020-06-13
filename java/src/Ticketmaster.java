@@ -834,7 +834,7 @@ public class Ticketmaster{
 				if(showId < 0){
 					throw new RuntimeException("Show id is invalid!");
 				}
-				//break;
+				break;
 			}catch(Exception e){
 				System.out.println(e);
 				continue;
