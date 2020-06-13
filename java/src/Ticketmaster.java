@@ -413,6 +413,7 @@ public class Ticketmaster{
 	public static void AddMovieShowingToTheater(Ticketmaster esql){//3
 		int theaterId;
 		int exists = 0;
+		int movieId;
 
 		do{//do until existing theater id is input
 			do{
@@ -424,6 +425,7 @@ public class Ticketmaster{
 					continue;
 				}catch(Exception e){
 					System.out.println(e);
+					continue;
 				}
 			}while(true);
 
@@ -435,10 +437,11 @@ public class Ticketmaster{
 				}
 			}catch(Exception e){
 				System.out.println(e);
+				continue;
 			}
 		}while(exists == 0);
 
-		int movieId;
+		
 
 		try{
 			String query = "SELECT (DISTINCT m.mvid) FROM Movies m;";
