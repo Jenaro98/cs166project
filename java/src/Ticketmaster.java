@@ -446,7 +446,7 @@ public class Ticketmaster{
 		
 
 		try{
-			String query = "SELECT m.mvid FROM Movies m;";
+			String query = "SELECT COUNT(m.mvid) FROM Movies m;";
 			movieId = esql.executeQuery(query);
 			movieId = movieId + 1; //movie id for new movie
 		}catch(Exception e){
@@ -570,7 +570,7 @@ public class Ticketmaster{
 		}while(true);
 
 		try{
-			String query = "INSERT INTO Movies (mvid, title, rdate, country, description, duration, lang, genre) VALUES ('" + movieId + "', '" + title + "', '" + relDate + "', " + relCntry + ", '" + des + ", '" + length + ", '" + lang + ", '" +  genre +"');";
+			String query = "INSERT INTO Movies (mvid, title, rdate, country, description, duration, lang, genre) VALUES ('" + movieId + "', '" + title + "', '" + relDate + "', '" + relCntry + "', '" + des + "', '" + length + "', '" + lang + "', '" +  genre +"');";
 			esql.executeUpdate(query);
 		}catch(Exception e){
 			System.out.println(e);
