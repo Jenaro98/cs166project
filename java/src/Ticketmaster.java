@@ -447,7 +447,7 @@ public class Ticketmaster{
 
 		try{
 			String query = "SELECT m.mvid FROM Movies m WHERE m.mvid > 0;";
-			movieId = esql.executeQuery(query);
+			movieId = esql.executeQueryAndReturnResult(query).size();
 			movieId = movieId + 1; //movie id for new movie
 			System.out.print("Number of movies: " + movieId + " ");
 		}catch(Exception e){
