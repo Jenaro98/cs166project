@@ -819,7 +819,7 @@ public class Ticketmaster{
 			}
 
 			try{
-				String query = "SELECT c.cid FROM Cinemas c WHERE c.cname = '" + cinema + "';";
+				String query = "SELECT cid FROM Cinemas WHERE cname = '" + cinema + "';";
 				cinemaId = Integer.parseInt(esql.executeQueryAndReturnResult(query).get(0).get(0));
 				break;
 			}catch(Exception e){
