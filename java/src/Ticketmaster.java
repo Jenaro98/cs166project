@@ -420,6 +420,7 @@ public class Ticketmaster{
 				System.out.print("Enter theater id for new movie showing:");
 				try{
 					theaterId = Integer.parseInt(in.readLine());
+					break;
 				}catch (NumberFormatException e) {
 					System.out.println("Invalid input!");
 					continue;
@@ -435,6 +436,7 @@ public class Ticketmaster{
 				if(exists == 0){
 					throw new RuntimeException("Theater Id does not exist! Try again");
 				}
+				break;
 			}catch(Exception e){
 				System.out.println(e);
 				continue;
