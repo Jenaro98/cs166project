@@ -449,7 +449,7 @@ public class Ticketmaster{
 	
 	public static void RemovePayment(Ticketmaster esql){//6
 		int bookId;
-		int exists = 0;
+		boolean exists = 0;
 
 		do{
 			do{
@@ -482,10 +482,10 @@ public class Ticketmaster{
 		}while(!exixts);
 
 		try{
-			query = "DELETE * FROM Payments p, WHERE p.bid = '" + bookId + "';";
+			String query = "DELETE * FROM Payments p, WHERE p.bid = '" + bookId + "';";
 			esql.executeQuery(query);
 
-			query = "UPDATE BOOKINGS SET status = '" + "Canceled" + "' WHERE bid = '" + bookId + "';";
+			String query = "UPDATE BOOKINGS SET status = '" + "Canceled" + "' WHERE bid = '" + bookId + "';";
 			esql.executeUpdate(query);
 		}catch(Exception e){
 			System.out.println(e);
