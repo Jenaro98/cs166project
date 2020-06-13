@@ -635,9 +635,10 @@ public class Ticketmaster{
 			}
 		}while(true);
 
+		int seats = 0;
 		try{
 			String query = "SELECT s.csid FROM ShowSeats s WHERE s.bid = '" + bookingId + "';";
-			int seats = esql.executeQueryAndReturnResult.size();
+			seats = esql.executeQueryAndReturnResult(query).size();
 			System.out.print("You have " + seats + " seats");
 		}catch(Exception e){
 			System.out.println(e);
