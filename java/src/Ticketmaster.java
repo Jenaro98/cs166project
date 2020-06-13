@@ -477,7 +477,7 @@ public class Ticketmaster{
 			try{
 				relDate = in.readLine();
 				if(relDate.length() <= 0 || relDate.length() > 10){
-					throw new RuntimeException("Release Date can not be empty or exceed 10 characters including '/''!")
+					throw new RuntimeException("Release Date can not be empty or exceed 10 characters including '/''!");
 				}
 				break;
 			}catch(Exception e){
@@ -578,7 +578,7 @@ public class Ticketmaster{
 			System.out.println(e);
 		}
 
-		System.out.print("Success adding " + title + " to movie showings to theater with id: " + theaterId + "!\n ")
+		System.out.print("Success adding " + title + " to movie showings to theater with id: " + theaterId + "!\n ");
 
 	}
 	
