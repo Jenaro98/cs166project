@@ -659,7 +659,7 @@ public class Ticketmaster{
 		showId = Integer.parseInt(temp1.get(0).get(0));
 
 		try{//get all cinema seat ids for a show
-			String query = "SELECT s.csid FROM ShowSeats s WHERE s.sid = '" + showId + "';"
+			String query = "SELECT s.csid FROM ShowSeats s WHERE s.sid = '" + showId + "';";
 			List<List<String>> temp2 = esql.executeQueryAndReturnResult(query);
 		}catch(Exception e){
 			System.out.println(e);
@@ -675,7 +675,7 @@ public class Ticketmaster{
 					try{
 						seatNum = Integer.parseInt(in.readLine());
 
-						String query = "SELECT c.csid FROM CinemaSeats c, ShowSeats s WHERE s.sid = '" + showId + "' AND s.csid = c.csid AND c.sno = '" + seatNum + "';"
+						String query = "SELECT c.csid FROM CinemaSeats c, ShowSeats s WHERE s.sid = '" + showId + "' AND s.csid = c.csid AND c.sno = '" + seatNum + "';";
 
 						counter = esql.executeQueryAndReturnResult(query).size() + counter;
 					}catch(Exception e){
@@ -692,11 +692,10 @@ public class Ticketmaster{
 			}
 		}while(counter != 0);
 
-		"UPDATE BOOKINGS SET status = '" + "Canceled" + "' WHERE bid = '" + bookId + "';";
 
 		for(int i = 0; i < seats; i++){
 			try{
-				String query = "UPDATE CinemaSeats SET sno = '" + nums.get(i) + "' WHERE csid = '" + temp3.get(i).get(0) + "';" 
+				String query = "UPDATE CinemaSeats SET sno = '" + nums.get(i) + "' WHERE csid = '" + temp3.get(i).get(0) + "';" ;
 			}catch(Exception e){
 				System.out.println(e);
 			}
