@@ -800,7 +800,7 @@ public class Ticketmaster{
 	
 	public static void ListTheatersPlayingShow(Ticketmaster esql){//9
 		//
-		String cinema;
+		String cinema = "";
 		int cinemaId = -1;
 		int showId = -1;
 		
