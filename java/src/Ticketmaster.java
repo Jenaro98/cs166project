@@ -448,7 +448,52 @@ public class Ticketmaster{
 	}
 	
 	public static void RemovePayment(Ticketmaster esql){//6
-		
+		int bookId;
+		int exists = 0;
+
+		do{
+			do{
+				System.out.print("Enter booking ID of payment to delete: ");
+
+				try{
+					bookId = Integer.parseInt(in.readLine());
+
+					if(bookId <= 0){
+						throw new RuntimeException("Booking Id can not be empty! ");
+					}
+					break;
+				}catch(Exception e){
+					System.out.println(e);
+					continue;
+				}
+			}while(true);
+
+			try{
+				String query = "SELECT p.pid FROM Payments p, Bookings b WHERE b.bid = '" + bookId + "';";
+				exists = esql.executeQuery(query);
+				if(!exists){
+					throw new RuntimeException("Booking id does not exist! Try Again");
+				}
+				break;
+			}catch(Exception e){
+				System.out.println(e);
+				continue;
+			}
+		}while(!exixts);
+
+		try{
+			query = "DELETE * FROM Payments p, WHERE p.bid = '" + bookId + "';";
+			esql.executeQuery(query);
+
+			query = "UPDATE BOOKINGS SET status = '" + "Canceled" + "' WHERE bid = '" + bookId + "';";
+			esql.executeUpdate(query);
+		}catch(Exception e){
+			System.out.println(e);
+			continue;
+		}
+
+		System.out.print("Success!!\n");
+
 	}
 	
 	public static void ClearCancelledBookings(Ticketmaster esql){//7
