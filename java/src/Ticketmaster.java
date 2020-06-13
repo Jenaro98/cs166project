@@ -802,7 +802,7 @@ public class Ticketmaster{
 		//
 		String cinema = "";
 		int cinemaId = -1;
-		int showId = -1;
+		int movieId = -1;
 		
 		do{
 			System.out.print("Enter cinema name: ");
@@ -827,12 +827,12 @@ public class Ticketmaster{
 				
 			}
 
-			System.out.print("Enter show id:");
+			System.out.print("Enter movie id for its showings:");
 			
 			try{
-				showId = Integer.parseInt(in.readLine());
-				if(showId < 0){
-					throw new RuntimeException("Show id is invalid!");
+				movieId = Integer.parseInt(in.readLine());
+				if(movieId < 0){
+					throw new RuntimeException("Movie id is invalid!");
 				}
 				break;
 			}catch(Exception e){
@@ -842,7 +842,7 @@ public class Ticketmaster{
 		}while(true);
 
 		try{
-			String query1 = "SELECT t.tname FROM Theaters t, Plays p, Cinemas c WHERE  t.cid = '" + cinemaId + "' AND p.tid = t.tid AND p.sid = '" + showId + "';";
+			String query1 = "SELECT t.tname FROM Theaters t, Plays p, Cinemas c WHERE  t.cid = '" + cinemaId + "' AND p.tid = t.tid AND p.sid = s.sid AND s.mvid = '" + movieId + "';";
 			esql.executeQueryAndPrintResult(query1);
 		}catch(Exception e){
 			System.out.println(e);
