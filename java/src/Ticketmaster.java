@@ -446,9 +446,10 @@ public class Ticketmaster{
 		
 
 		try{
-			String query = "SELECT COUNT(m.mvid) FROM Movies m;";
+			String query = "SELECT m.mvid FROM Movies m;";
 			movieId = esql.executeQuery(query);
 			movieId = movieId + 1; //movie id for new movie
+			System.out.print("Number of movies: " + movieId + " ");
 		}catch(Exception e){
 			System.out.print(e);
 		}
@@ -577,7 +578,7 @@ public class Ticketmaster{
 		}
 
 		try{
-			String query = "INSERT INTO Plays (sid, tid) VALUES ('" + movieId + "', " + theaterId + "');";
+			String query = "INSERT INTO Plays (sid, tid) VALUES ('" + movieId + "', '" + theaterId + "');";
 			esql.executeUpdate(query);
 		}catch(Exception e){
 			System.out.println(e);
