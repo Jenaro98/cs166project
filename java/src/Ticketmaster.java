@@ -426,7 +426,7 @@ public class Ticketmaster{
 					continue;
 				}catch(Exception e){
 					System.out.println(e);
-					continue;
+					
 				}
 			}while(true);
 
@@ -439,14 +439,14 @@ public class Ticketmaster{
 				break;
 			}catch(Exception e){
 				System.out.println(e);
-				continue;
+				
 			}
 		}while(exists == 0);
 
 		
 
 		try{
-			String query = "SELECT (DISTINCT m.mvid) FROM Movies m;";
+			String query = "SELECT m.mvid FROM Movies m;";
 			movieId = esql.executeQuery(query);
 			movieId = movieId + 1; //movie id for new movie
 		}catch(Exception e){
