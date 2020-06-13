@@ -418,7 +418,7 @@ public class Ticketmaster{
 			do{
 				System.out.print("Enter theater id for new movie showing:");
 				try{
-					theaterId = Integer.ParseInt(in.readLine());
+					theaterId = Integer.parseInt(in.readLine());
 				}catch (NumberFormatException e) {
 					System.out.println("Invalid input!");
 					continue;
@@ -441,8 +441,8 @@ public class Ticketmaster{
 		int movieId;
 
 		try{
-			String query = "SELECT COUNT(DISTINCT m.mvid) FROM Movies m;";
-			movieId = Integer.parseInt(esql.executeQueryAndReturnResult(query));
+			String query = "SELECT (DISTINCT m.mvid) FROM Movies m;";
+			movieId = Integer.parseInt(esql.executeQuery(query));
 			movieId = movieId + 1; //movie id for new movie
 		}catch(Exception e){
 			System.out.print(e);
