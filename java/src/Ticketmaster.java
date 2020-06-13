@@ -416,6 +416,31 @@ public class Ticketmaster{
 	
 	public static void CancelPendingBookings(Ticketmaster esql){//4
 		//
+		String input;
+
+		do{
+			System.out.print("Are you sure you want to cancel pending bookings?(y/n): ");
+
+			try{
+				input = in.readLine();
+				if(input.equals("y")){
+					try{
+						String query = "UPDATE BOOKINGS SET status = \'" + "Canceled" + "\' WHERE status = \'" + "Pending" + "\';";
+						esql.executeUpdate(query);
+						System.out.print("Success!!\n");
+					}catch (Exception e){
+						System.err.println(e.getMessage());
+					}
+				}else if(!input.equals("y") && !input.equals("n")){
+					throw new RuntimeException("Invalid input!");
+				}
+				break;
+			}catch (Exception e){
+				System.out.println(e);
+				continue;
+			}
+		}while(true);
+
 	}
 	
 	public static void ChangeSeatsForBooking(Ticketmaster esql) throws Exception{//5
