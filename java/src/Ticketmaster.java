@@ -812,7 +812,7 @@ public class Ticketmaster{
 				if(cinema.length() <= 0 || cinema.length() > 64){
 					throw new RuntimeException("Cinema name can not be empty or exceed 64 characters!");
 				}
-				break;
+				//break;
 			}catch(Exception e){
 				System.out.println(e);
 				
@@ -821,7 +821,7 @@ public class Ticketmaster{
 			try{
 				String query = "SELECT cid FROM Cinemas WHERE cname = '" + cinema + "';";
 				cinemaId = Integer.parseInt(esql.executeQueryAndReturnResult(query).get(0).get(0));
-				break;
+				//break;
 			}catch(Exception e){
 				System.out.println(e);
 				
@@ -834,7 +834,7 @@ public class Ticketmaster{
 				if(showId < 0){
 					throw new RuntimeException("Show id is invalid!");
 				}
-				break;
+				//break;
 			}catch(Exception e){
 				System.out.println(e);
 				continue;
