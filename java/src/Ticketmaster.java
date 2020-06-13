@@ -618,7 +618,91 @@ public class Ticketmaster{
 	}
 	
 	public static void ChangeSeatsForBooking(Ticketmaster esql) throws Exception{//5
+		int bookingId;
 		
+
+		do{
+			System.out.print("Enter booking Id to change seat reservations: ");
+			try{
+				bookingId = Integer.parseInt(in.readLine());
+				break;
+			}catch(NumberFormatException e){
+				System.out.print("Invalid input!");
+				continue;
+			}catch(Exception e){
+				System.out.println(e);
+				continue;
+			}
+		}while(true);
+
+		try{
+			String query = "SELECT s.csid FROM ShowSeats s WHERE s.bid = '" + bookingId + "';";
+			int seats = esql.executeQueryAndReturnResult.size();
+			System.out.print("You have " + seats + " seats");
+		}catch(Exception e){
+			System.out.println(e);
+		}
+
+		int showId = -1;
+		try{
+			String query = "SELECT s.sid FROM ShowSeats s WHERE s.bid = '" + bookingId + "';";
+			List<List<String>> temp1 = esql.executeQueryAndReturnResult(query);
+
+			String query1 = "SELECT s.csid FROM ShowSeats s WHERE s.bid = '" + bookingId + "';";
+			List<List<String>> temp3 = esql.executeQueryAndReturnResult(query1);
+
+			System.out.print("Show id is: " + temp1.get(0).get(0) + " seats");
+		}catch(Exception e){
+			System.out.println(e);
+		}
+
+		showId = Integer.parseInt(temp1.get(0).get(0));
+
+		try{//get all cinema seat ids for a show
+			String query = "SELECT s.csid FROM ShowSeats s WHERE s.sid = '" + showId + "';"
+			List<List<String>> temp2 = esql.executeQueryAndReturnResult(query);
+		}catch(Exception e){
+			System.out.println(e);
+		}
+
+		do{
+			List<int> nums;
+			int counter = 0; //if not 0 then seat is not available
+			int seatNum = -1;
+			for(int j = 0; j < seats ; j++){
+				System.out.print("Enter new seat number for seat(" + (j + 1) + "): ");
+				for(int i = 0; i < temp2.size() ;i++){
+					try{
+						seatNum = Integer.parseInt(in.readLine());
+
+						String query = "SELECT c.csid FROM CinemaSeats c, ShowSeats s WHERE s.sid = '" + showId + "' AND s.csid = c.csid AND c.sno = '" + seatNum + "';"
+
+						counter = esql.executeQueryAndReturnResult(query).size() + counter;
+					}catch(Exception e){
+						System.out.println(e);
+					}
+				}//if counter is 0 after this then seat is available
+				if(counter == 0){
+					nums.add(seatNum);
+				}
+				else{
+					System.out.print("Seat was not available. Try again");
+					continue;
+				}
+			}
+		}while(counter != 0);
+
+		"UPDATE BOOKINGS SET status = '" + "Canceled" + "' WHERE bid = '" + bookId + "';";
+
+		for(int i = 0; i < seats; i++){
+			try{
+				String query = "UPDATE CinemaSeats SET sno = '" + nums.get(i) + "' WHERE csid = '" + temp3.get(i).get(0) + "';" 
+			}catch(Exception e){
+				System.out.println(e);
+			}
+		}
+
+		System.out.print("Success!!\n");
 	}
 	
 	public static void RemovePayment(Ticketmaster esql){//6
@@ -705,91 +789,6 @@ public class Ticketmaster{
 	
 	public static void ListTheatersPlayingShow(Ticketmaster esql){//9
 		//
-		int bookingId;
-		
-
-		do{
-			System.out.print("Enter booking Id to change seat reservations: ");
-			try{
-				bookingId = Integer.parseInt(in.readLine());
-				break;
-			}catch(NumberFormatException){
-				System.out.print("Invalid input!");
-				continue;
-			}catch(Exception e){
-				System.out.println(e);
-				continue;
-			}
-		}while(true);
-
-		try{
-			String query = "SELECT s.csid FROM ShowSeats s WHERE s.bid = '" + bookingId + "';";
-			int seats = esql.executeQueryAndReturnResult.size();
-			System.out.print("You have " + seats + " seats");
-		}catch(Exception e){
-			System.out.println(e);
-		}
-
-		int showId = -1;
-		try{
-			String query = "SELECT s.sid FROM ShowSeats s WHERE s.bid = '" + bookingId + "';";
-			List<List<String>> temp1 = esql.executeQueryAndReturnResult(query);
-
-			String query1 = "SELECT s.csid FROM ShowSeats s WHERE s.bid = '" + bookingId + "';";
-			List<List<String>> temp3 = esql.executeQueryAndReturnResult(query1);
-
-			System.out.print("Show id is: " + temp1.get(0).get(0) + " seats");
-		}catch(Exception e){
-			System.out.println(e);
-		}
-
-		showId = Integer.parseInt(temp1.get(0).get(0));
-
-		try{//get all cinema seat ids for a show
-			String query = "SELECT s.csid FROM ShowSeats s WHERE s.sid = '" + showId + "';"
-			List<List<String>> temp2 = esql.executeQueryAndReturnResult(query);
-		}catch(Exception e){
-			System.out.println(e);
-		}
-
-		do{
-			List<int> nums;
-			int counter = 0; //if not 0 then seat is not available
-			int seatNum = -1;
-			for(int j = 0; j < seats ; j++){
-				System.out.print("Enter new seat number for seat(" + (j + 1) + "): ");
-				for(int i = 0; i < temp2.size() ;i++){
-					try{
-						seatNum = Integer.parseInt(in.readLine());
-
-						String query = "SELECT c.csid FROM CinemaSeats c, ShowSeats s WHERE s.sid = '" + showId + "' AND s.csid = c.csid AND c.sno = '" + seatNum + "';"
-
-						counter = esql.executeQueryAndReturnResult(query).size() + counter;
-					}catch(Exception e){
-						System.out.println(e);
-					}
-				}//if counter is 0 after this then seat is available
-				if(counter == 0){
-					nums.add(seatNum);
-				}
-				else{
-					System.out.print("Seat was not available. Try again");
-					continue;
-				}
-			}
-		}while(counter != 0);
-
-		"UPDATE BOOKINGS SET status = '" + "Canceled" + "' WHERE bid = '" + bookId + "';";
-
-		for(int i = 0; i < seats; i++){
-			try{
-				String query = "UPDATE CinemaSeats SET sno = '" + nums.get(i) + "' WHERE csid = '" + temp3.get(i).get(0) + "';" 
-			}catch(Exception e){
-				System.out.println(e);
-			}
-		}
-
-		System.out.print("Success!!\n");
 		
 	}
 	
