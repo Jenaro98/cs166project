@@ -669,7 +669,9 @@ public class Ticketmaster{
 		//}
 
 		int counter = 0;
-		List<Integer> nums = new List<Integer>(seats);
+		List<Integer> nums;
+		nums.add(0);
+
 		do{
 			//List<Integer> nums;
 			counter = 0; //if not 0 then seat is not available
@@ -697,6 +699,7 @@ public class Ticketmaster{
 			}
 		}while(counter != 0);
 
+		nums.remove(0);
 
 		for(int i = 0; i < seats; i++){
 			try{
