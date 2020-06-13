@@ -668,9 +668,10 @@ public class Ticketmaster{
 			System.out.println(e);
 		}
 
+		int counter = 0;
 		do{
-			List<int> nums;
-			int counter = 0; //if not 0 then seat is not available
+			List<Integer> nums;
+			counter = 0; //if not 0 then seat is not available
 			int seatNum = -1;
 			for(int j = 0; j < seats ; j++){
 				System.out.print("Enter new seat number for seat(" + (j + 1) + "): ");
