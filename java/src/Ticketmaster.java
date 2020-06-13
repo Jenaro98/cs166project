@@ -842,7 +842,7 @@ public class Ticketmaster{
 		}while(true);
 
 		try{
-			String query1 = "SELECT t.tname FROM Theaters t, Plays p, Cinemas c WHERE  t.cid = '" + cinemaId + "' AND p.tid = t.tid AND p.sid = s.sid AND s.mvid = '" + movieId + "';";
+			String query1 = "SELECT t.tname FROM Theaters t, Plays p, Cinemas c, Shows s WHERE  t.cid = '" + cinemaId + "' AND p.tid = t.tid AND p.sid = s.sid AND s.mvid = '" + movieId + "';";
 			esql.executeQueryAndPrintResult(query1);
 		}catch(Exception e){
 			System.out.println(e);
