@@ -680,9 +680,9 @@ public class Ticketmaster{
 					try{
 						seatNum = Integer.parseInt(in.readLine());
 
-						String query = "SELECT c.csid FROM CinemaSeats c, ShowSeats s WHERE s.sid = '" + showId + "' AND s.csid = c.csid AND c.sno = '" + seatNum + "';";
+						String query5 = "SELECT c.csid FROM CinemaSeats c, ShowSeats s WHERE s.sid = '" + showId + "' AND s.csid = c.csid AND c.sno = '" + seatNum + "';";
 
-						counter = esql.executeQueryAndReturnResult(query).size() + counter;
+						counter = esql.executeQueryAndReturnResult(query5).size() + counter;
 					}catch(Exception e){
 						System.out.println(e);
 					}
