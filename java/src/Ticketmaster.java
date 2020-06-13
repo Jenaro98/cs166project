@@ -416,7 +416,7 @@ public class Ticketmaster{
 
 		do{//do until existing theater id is input
 			do{
-				System.out.print("Enter theater id for new movie showing:")
+				System.out.print("Enter theater id for new movie showing:");
 				try{
 					theaterId = Integer.ParseInt(in.readLine());
 				}catch (NumberFormatException e) {
@@ -433,6 +433,8 @@ public class Ticketmaster{
 				if(exists == 0){
 					throw new RuntimeException("Theater Id does not exist! Try again");
 				}
+			}catch(Exception e){
+				System.out.println(e);
 			}
 		}while(exists == 0);
 
@@ -460,7 +462,7 @@ public class Ticketmaster{
 			try{
 				title = in.readLine();
 				if(title.length() <= 0 || title.length() > 128){
-					throw new RuntimeException("Title can not be empty or exceed 128 characters!")
+					throw new RuntimeException("Title can not be empty or exceed 128 characters!");
 				}
 				break;
 			}catch(Exception e){
@@ -490,7 +492,7 @@ public class Ticketmaster{
 			try{
 				relCntry = in.readLine();
 				if(relCntry.length() <= 0 || relCntry.length() > 64){
-					throw new RuntimeException("Release Country can not be empty or exceed 64 characters!")
+					throw new RuntimeException("Release Country can not be empty or exceed 64 characters!");
 				}
 				break;
 			}catch(Exception e){
@@ -505,7 +507,7 @@ public class Ticketmaster{
 			try{
 				des = in.readLine();
 				if(des.length() <= 0 || des.length() > 200){
-					throw new RuntimeException("Description can not be empty or exceed 200 characters!")
+					throw new RuntimeException("Description can not be empty or exceed 200 characters!");
 				}
 				break;
 			}catch(Exception e){
@@ -520,7 +522,7 @@ public class Ticketmaster{
 			try{
 				length = Long.parseLong(in.readLine());
 				if(length <= 0 ){
-					throw new RuntimeException("Movie Duration can not be empty!")
+					throw new RuntimeException("Movie Duration can not be empty!");
 				}
 				break;
 			}catch (NumberFormatException e) {
@@ -538,7 +540,7 @@ public class Ticketmaster{
 			try{
 				lang = in.readLine();
 				if(lang.length() <= 0 || lang.length() > 2){
-					throw new RuntimeException("Language code can not be empty or exceed 2 characters!")
+					throw new RuntimeException("Language code can not be empty or exceed 2 characters!");
 				}
 				break;
 			}catch(Exception e){
@@ -553,7 +555,7 @@ public class Ticketmaster{
 			try{
 				genre = in.readLine();
 				if(genre.length() <= 0 || genre.length() > 16){
-					throw new RuntimeException("Movie Genre can not be empty or exceed 16 characters!")
+					throw new RuntimeException("Movie Genre can not be empty or exceed 16 characters!");
 				}
 				break;
 			}catch(Exception e){
