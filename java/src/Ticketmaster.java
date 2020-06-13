@@ -711,7 +711,7 @@ public class Ticketmaster{
 
 			System.out.print("Success!!\n");
 		}else{
-			System.out.print("You have no seats reserved.");
+			System.out.print("You have no seats reserved.\n");
 		}
 		
 	}
@@ -800,7 +800,51 @@ public class Ticketmaster{
 	
 	public static void ListTheatersPlayingShow(Ticketmaster esql){//9
 		//
+		String cinema;
+		int cinemaId = -1;
+		int showId = -1;
 		
+		do{
+			System.out.print("Enter cinema name: ");
+
+			try{
+				cinema = in.readLine();
+				if(cinema.length() <= 0 || cinema.length() > 64){
+					throw new RuntimeException("Cinema name can not be empty or exceed 64 characters!");
+				}
+				break;
+			}catch(Exception e){
+				System.out.println(e);
+				continue;
+			}
+
+			try{
+				String query = "SELECT c.cid FROM Cinemas c WHERE c.cname = '" + cinema + "';";
+				cinemaId = Integer.parseInt(esql.executeQueryAndReturnResult(query).get(0).get(0));
+			}catch(Execption e){
+				System.out.println(e);
+			}
+
+			System.out.print("Enter show id:");
+			
+			try{
+				showId = Integer.parseInt(in.readLine());
+				if(showId < 0){
+					throw new RuntimeException("Show id is invalid!");
+				}
+				break;
+			}catch(Exception e){
+				System.out.println(e);
+			}
+		}while(true);
+
+		try{
+			String query1 = "SELECT t.tname FROM Theaters t, Plays p, Cinemas c WHERE  t.cid = '" + cinemaId + "' AND p.tid = t.tid AND s.sid = '" + showId + "';";
+			esql.executeQueryAndPrintResult(query1);
+		}catch(Exception e){
+			System.out.println(e);
+		}
+
 	}
 	
 	public static void ListShowsStartingOnTimeAndDate(Ticketmaster esql){//10
