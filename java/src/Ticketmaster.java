@@ -442,7 +442,7 @@ public class Ticketmaster{
 
 		try{
 			String query = "SELECT (DISTINCT m.mvid) FROM Movies m;";
-			movieId = Integer.parseInt(esql.executeQuery(query));
+			movieId = esql.executeQuery(query);
 			movieId = movieId + 1; //movie id for new movie
 		}catch(Exception e){
 			System.out.print(e);
