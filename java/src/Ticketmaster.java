@@ -1032,7 +1032,31 @@ public class Ticketmaster{
 
 	public static void ListBookingInfoForUser(Ticketmaster esql){//14
 		//
+		String input = "";
+
+		do{
+			System.out.print("Enter a user email to see all corresponding bookings: ");
+
+			try{
+				input = in.readLine();
+				System.out.print("You entered: " + input + " ");//fixme delete checks if @ is read
+				if(email.length() <= 0 || email.length() > 64){
+					throw new RuntimeException("Email can not be empty or exceed 64 characters!");
+				}
+				break;
+			}catch(Exception e){
+				System.out.println(e);
+			}
+		}while(true);
+
 		
+		try{
+			String query = "SELECT m.title, s.sdate, s.sttime, t.tname,  c.cno FROM Plays p, Movies m, Shows s, Bookings b, Users u, ShowSeats h, Theaters t WHERE u.email = '" + input + "' AND b.sid = s.sid AND s.mvid = m.mvid AND s.sid = p.sid AND p.tid = t.tid AND t.tid = h.tid;";
+			esql.executeQueryAndPrintResult(query);
+		}catch(Exception e){
+			System.out.println(e);
+		}
+	
 	}
 	
 }
