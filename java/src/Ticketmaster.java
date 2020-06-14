@@ -973,7 +973,7 @@ public class Ticketmaster{
 		//we have movie,cinema,date1,date2
 
 		try{
-			String query = "SELECT m.title, m.duration, s.sdate, s.sttime FROM Movies m, Shows s, Plays p, Cinema c WHERE m.title = '" + movie + "' AND c.cname = '" + cinema + "' AND c.cid = t.tid AND t.tid = p.tid AND p.sid = s.sid AND s.mvid = m.mvid AND s.sdate >= '" + date1 + "' AND s.sdate <= '" + date2 + "';";
+			String query = "SELECT m.title, m.duration, s.sdate, s.sttime FROM Movies m, Shows s, Plays p, Cinemas c WHERE m.title = '" + movie + "' AND c.cname = '" + cinema + "' AND c.cid = t.tid AND t.tid = p.tid AND p.sid = s.sid AND s.mvid = m.mvid AND s.sdate >= '" + date1 + "' AND s.sdate <= '" + date2 + "';";
 			esql.executeQueryAndPrintResult(query);
 		}catch(Exception e){
 			System.out.println(e);
