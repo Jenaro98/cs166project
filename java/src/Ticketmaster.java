@@ -917,6 +917,30 @@ public class Ticketmaster{
 
 	public static void ListUsersWithPendingBooking(Ticketmaster esql){//12
 		//
+		String input = "";
+
+		do{
+			System.out.print("Do you want to see all Users with a pending booking status?(y/n): ");
+
+			try{
+				input = in.readLine();
+				if(!input.equals("n") && !input.equals("y")){
+					throw new RuntimeException("Invalid input! Enter (y/n)");
+				}
+				break;
+			}catch(Exception e){
+				System.out.println(e);
+			}
+		}while(true);
+
+		if(input.equals("y")){
+			try{
+				String query = "SELECT u.fname, u.lname, u.email FROM Users u, Bookings b WHERE b.email = u.email AND b.status = '" + "Pending" + ";";
+				esql.executeQueryAndPrintResult(query);
+			}catch(Exception e){
+				System.out.println(e);
+			}
+		}
 		
 	}
 
