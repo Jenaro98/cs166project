@@ -888,6 +888,30 @@ public class Ticketmaster{
 
 	public static void ListMovieTitlesContainingLoveReleasedAfter2010(Ticketmaster esql){//11
 		//
+		String input = "";
+
+		do{
+			System.out.print("Do you want to see all movie titles for titles containing \"Love\" released after 2010?(y/n): ");
+
+			try{
+				input = in.readLine();
+				if(!input.equals("n") || !input.equals("n")){
+					throw new RuntimeException("Invalid input! Enter (y/n)");
+				}
+				break;
+			}catch(Exception e){
+				System.out.println(e);
+			}
+		}while(true);
+
+		if(input.equals("y")){
+			try{
+				String query = "SELECT m.mtitle FROM Movies m WHERE m.mtitle LIKE '" + "%love%" + "' AND m.rdate >= '" + "12/31/2010" + "';";
+				esql.executeQueryAndPrintResult(query);
+			}catch(Exception e){
+				System.out.println(e);
+			}
+		}
 		
 	}
 
