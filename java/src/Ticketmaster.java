@@ -906,7 +906,7 @@ public class Ticketmaster{
 
 		if(input.equals("y")){
 			try{
-				String query = "SELECT m.title FROM Movies m WHERE m.title LIKE '" + "%love%" + "' AND m.rdate >= '" + "12/31/2010" + "';";
+				String query = "SELECT m.title FROM Movies m WHERE m.title LIKE '" + "%Love%" + "' AND m.rdate >= '" + "12/31/2010" + "';";
 				esql.executeQueryAndPrintResult(query);
 			}catch(Exception e){
 				System.out.println(e);
