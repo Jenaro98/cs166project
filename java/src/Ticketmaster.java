@@ -935,7 +935,7 @@ public class Ticketmaster{
 
 		if(input.equals("y")){
 			try{
-				String query = "SELECT u.fname, u.lname, u.email FROM Users u, Bookings b WHERE b.email = u.email AND b.status = '" + "Pending" + ";";
+				String query = "SELECT u.fname, u.lname, u.email FROM Users u, Bookings b WHERE b.email = u.email AND b.status = '" + "Pending" + "';";
 				esql.executeQueryAndPrintResult(query);
 			}catch(Exception e){
 				System.out.println(e);
