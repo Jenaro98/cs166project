@@ -826,6 +826,7 @@ public class Ticketmaster{
 				System.out.println(e);
 				
 			}
+			System.out.print("We have cinema id: " + cinemaId + " ");
 
 			System.out.print("Enter movie id for its showings:");
 			
