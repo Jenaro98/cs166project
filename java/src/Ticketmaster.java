@@ -818,17 +818,6 @@ public class Ticketmaster{
 				
 			}
 
-			try{
-				String query = "SELECT cid FROM Cinemas WHERE cname = '" + cinema + "';";
-				//cinemaId = Integer.parseInt(esql.executeQueryAndReturnResult(query).get(0).get(0));
-				//break;
-				esql.executeQueryAndPrintResult(query);
-			}catch(Exception e){
-				System.out.println(e);
-				
-			}
-			System.out.print("We have cinema id: " + cinemaId + " ");
-
 			System.out.print("Enter movie id for its showings:");
 			
 			try{
@@ -844,7 +833,7 @@ public class Ticketmaster{
 		}while(true);
 
 		try{
-			String query1 = "SELECT t.tname FROM Theaters t, Plays p, Cinemas c, Shows s WHERE  t.cid = c.cid AND p.tid = t.tid AND p.sid = s.sid AND s.mvid = '" + movieId + "' AND c.cname = '" + cinema + "';";
+			String query1 = "SELECT t.tname FROM Plays p, Theaters t, Cinemas c, Shows s WHERE c.cid = t.tid AND t.tid = p.tid AND p.sid = s.sid AND s.mvid = '" + movieId + "';";
 			esql.executeQueryAndPrintResult(query1);
 		}catch(Exception e){
 			System.out.println(e);
