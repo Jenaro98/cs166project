@@ -895,7 +895,7 @@ public class Ticketmaster{
 
 			try{
 				input = in.readLine();
-				if(!input.equals("n") || !input.equals("y")){
+				if(!input.equals("n") && !input.equals("y")){
 					throw new RuntimeException("Invalid input! Enter (y/n)");
 				}
 				break;
