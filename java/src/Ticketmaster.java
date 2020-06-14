@@ -1040,7 +1040,7 @@ public class Ticketmaster{
 			try{
 				input = in.readLine();
 				System.out.print("You entered: " + input + " ");//fixme delete checks if @ is read
-				if(email.length() <= 0 || email.length() > 64){
+				if(input.length() <= 0 || input.length() > 64){
 					throw new RuntimeException("Email can not be empty or exceed 64 characters!");
 				}
 				break;
