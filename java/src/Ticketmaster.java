@@ -1051,7 +1051,7 @@ public class Ticketmaster{
 
 		
 		try{
-			String query = "SELECT m.title, s.sdate, s.sttime, t.tname,  cs.sno FROM Movies m, Shows s, Bookings b, Users u, ShowSeats ss, CinemaSeats cs, Theaters t WHERE b.email = '" + input + "' AND b.bid = ss.bid AND ss.csid = cs.csid AND cs.tid = t.tid ;"; //AND s.sid = ss.sid
+			String query = "SELECT m.title, s.sdate, s.sttime, t.tname,  cs.sno FROM Movies m, Shows s, Bookings b, Users u, ShowSeats ss, CinemaSeats cs, Theaters t WHERE b.email = '" + input + "' AND b.bid = ss.bid AND ss.sid = s.sid AND s.mvid = m.mvid AND p.sid = ss.sid AND p.tid = t.tid AND t.tid = cs.tid;"; //AND s.sid = ss.sid
 			esql.executeQueryAndPrintResult(query);
 		}catch(Exception e){
 			System.out.println(e);
